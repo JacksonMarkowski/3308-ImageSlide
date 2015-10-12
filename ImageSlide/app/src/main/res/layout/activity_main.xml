@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/backgroundMain"
+    android:id="@+id/mainLayout"
+    android:padding="5dp">
+
+        <!--
+        <EditText android:id="@+id/edit_message"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_message" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_send"
+            android:onClick="sendMessage" />
+        -->
+
+    <Button
+        android:id="@+id/button_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:textColor="@color/menuText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="menuButtonClick"
+        android:background="#00000000"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <LinearLayout
+        android:id="@+id/menuLayout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="false"
+        android:background="@drawable/border_shadow">
+
+        <Button
+            android:id="@+id/button_imageSites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Image Sites"
+            android:textColor="@color/menuText"
+            android:onClick="imageSitesButtonClick"
+            android:background="#00000000"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginRight="25dp"/>
+
+        <Button
+            android:id="@+id/button_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="@color/menuText"
+            android:onClick="settingsButtonClick"
+            android:background="#00000000"
+            style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
