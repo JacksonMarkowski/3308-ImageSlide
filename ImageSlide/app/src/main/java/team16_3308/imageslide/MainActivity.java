@@ -1,5 +1,6 @@
 package team16_3308.imageslide;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import java.io.InputStream;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
+        LoadImageFromWebOperations("Google");
     }
 
     public boolean onTouchEvent(MotionEvent e) {
@@ -75,4 +79,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     */
+
+    public static Drawable LoadImageFromWebOperations(String url)
+    {
+        try{
+        InputStream is = (InputStream) new URL("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png").getContent();
+        Drawable d = Drawable.createFromStream(is, "Google");
+        return d;}
+        catch(Exception e)
+        {
+            return null;
+        }
+
+    }
 }
