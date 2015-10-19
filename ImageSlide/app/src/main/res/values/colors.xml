@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="backgroundMenu">#3c3f41</color>
-    <color name="backgroundMain">#dadada</color>
+    <color name="backgroundMain">#f1f0f0</color>
     <color name="menuText">#1e1e1e</color>
 </resources>

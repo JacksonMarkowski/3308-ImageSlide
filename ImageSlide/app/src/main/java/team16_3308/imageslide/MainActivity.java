@@ -64,11 +64,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void imageSitesButtonClick(View view) {
-
+        LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
+        layout.setVisibility(View.GONE);
+        menuOpen = false;
+        Button b = (Button) findViewById(R.id.button_menu);
+        b.setVisibility(View.VISIBLE);
     }
 
     public void settingsButtonClick(View view) {
-
+        LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
+        layout.setVisibility(View.GONE);
+        menuOpen = false;
+        Button b = (Button) findViewById(R.id.button_menu);
+        b.setVisibility(View.VISIBLE);
     }
     /*
     public void sendMessage(View view) {
