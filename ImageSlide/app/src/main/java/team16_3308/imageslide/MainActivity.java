@@ -25,11 +25,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //sets the menuLayout to not being visible(menu is not open on startup)
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
+
         LoadImageFromWebOperations("Google");
     }
 
+    //Handles touchEvents for the activity
     public boolean onTouchEvent(MotionEvent e) {
         if (menuOpen) {
             LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
@@ -64,19 +68,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void imageSitesButtonClick(View view) {
+        //closes the menuLayout
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
         menuOpen = false;
+
+        //Re-shows the menuButton
         Button b = (Button) findViewById(R.id.button_menu);
         b.setVisibility(View.VISIBLE);
+
+        //Opens the imageSitesActivity
+        Intent intent = new Intent(this,ImageSitesActivity.class);
+        startActivity(intent);
     }
 
     public void settingsButtonClick(View view) {
+        //closes the menuLayout
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
         menuOpen = false;
+
+        //Re-shows the menuButton
         Button b = (Button) findViewById(R.id.button_menu);
         b.setVisibility(View.VISIBLE);
+
+        //Opens the settingsActivity
+        Intent intent = new Intent(this,SettingsActivity.class);
+        startActivity(intent);
     }
     /*
     public void sendMessage(View view) {
@@ -91,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
     public static Drawable LoadImageFromWebOperations(String url)
     {
         try{
-        InputStream is = (InputStream) new URL("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png").getContent();
-        Drawable d = Drawable.createFromStream(is, "Google");
-        return d;}
+            InputStream is = (InputStream) new URL("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png").getContent();
+            Drawable d = Drawable.createFromStream(is, "Google");
+            return d;}
         catch(Exception e)
         {
             return null;

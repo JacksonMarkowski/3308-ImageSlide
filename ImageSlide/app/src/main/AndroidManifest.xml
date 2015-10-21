@@ -24,6 +24,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="team16_3308.imageslide.MainActivity" />
         </activity>
+        <activity android:name=".ImageSitesActivity" >
+        </activity>
+        <activity android:name=".SettingsActivity" >
+        </activity>
     </application>
 
 </manifest>
