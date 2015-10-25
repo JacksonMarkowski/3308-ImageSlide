@@ -43,7 +43,7 @@ public class ImagePanel {
         GridLayout gLayout = (GridLayout) activity.findViewById(R.id.gridLayout);
 
         //ToDo: layoutWidth gets screen size
-        int layoutWidth = 1000;
+        int layoutWidth = 1080;
         int originalImageWidth = image.getWidth();
         int originalImageHeight = image.getHeight();
         int newImageWidth = originalImageWidth;

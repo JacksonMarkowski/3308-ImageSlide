@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         layout.setVisibility(View.VISIBLE);
         menuOpen = true;
         ImageButton b1 = (ImageButton) findViewById(R.id.menuButton);
-        b1.setVisibility(View.GONE);
+        //b1.setVisibility(View.GONE);
     }
 
     public void imageSitesButtonClick(View view) {
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Re-shows the menuButton
         ImageButton b = (ImageButton) findViewById(R.id.menuButton);
-        b.setVisibility(View.VISIBLE);
+        //b.setVisibility(View.VISIBLE);
 
         //Opens the imageSitesActivity
         Intent intent = new Intent(this,ImageSitesActivity.class);
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Re-shows the menuButton
         ImageButton b = (ImageButton) findViewById(R.id.menuButton);
-        b.setVisibility(View.VISIBLE);
+        //b.setVisibility(View.VISIBLE);
 
         //Opens the settingsActivity
         Intent intent = new Intent(this,SettingsActivity.class);
