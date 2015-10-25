@@ -1,6 +1,9 @@
 package team16_3308.imageslide;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,10 +12,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,11 +39,17 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
 
-        LoadImageFromWebOperations("Google");
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.desert);
+        ImagePanel p = new ImagePanel(this, bitmap, "Title", "http://link", "Description");
+        p.createImageView();
+
+        //LoadImageFromWebOperations("Google");
     }
 
     //Handles touchEvents for the activity
     public boolean onTouchEvent(MotionEvent e) {
+        /*
         if (menuOpen) {
             LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
             float x = layout.getX();
@@ -52,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return true;
+        */
+        return true;
     }
 
     public void menuButtonClick(View view) {
@@ -63,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.VISIBLE);
         menuOpen = true;
-        Button b1 = (Button) findViewById(R.id.button_menu);
+        ImageButton b1 = (ImageButton) findViewById(R.id.menuButton);
         b1.setVisibility(View.GONE);
     }
 
@@ -74,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         menuOpen = false;
 
         //Re-shows the menuButton
-        Button b = (Button) findViewById(R.id.button_menu);
+        ImageButton b = (ImageButton) findViewById(R.id.menuButton);
         b.setVisibility(View.VISIBLE);
 
         //Opens the imageSitesActivity
@@ -89,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         menuOpen = false;
 
         //Re-shows the menuButton
-        Button b = (Button) findViewById(R.id.button_menu);
+        ImageButton b = (ImageButton) findViewById(R.id.menuButton);
         b.setVisibility(View.VISIBLE);
 
         //Opens the settingsActivity

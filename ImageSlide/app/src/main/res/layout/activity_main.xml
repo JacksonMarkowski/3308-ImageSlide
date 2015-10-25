@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@color/backgroundMain"
-    android:id="@+id/mainLayout"
-    android:padding="5dp">
+    android:id="@+id/mainLayout" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,80 +14,21 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnCount="2">
+            android:columnCount="2"
+            android:id="@+id/gridLayout">
 
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button1"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button2"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button3"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button4"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button5"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button6"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button7"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button8"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button9"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button10"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button11"/>
-
-            <Button
-                android:layout_width="185dp"
-                android:layout_height="150dp"
-                android:id="@+id/button12"/>
         </GridLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Menu"
-        android:textColor="@color/menuText"
-        android:layout_gravity="end"
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:onClick="menuButtonClick"
-        android:background="#00000000"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:id="@+id/menuButton"
+        android:src="@drawable/menu_icon"
+        android:layout_gravity="end"
+        android:scaleType="fitCenter"
+        android:background="@null" />
 
     <LinearLayout
         android:id="@+id/menuLayout"
