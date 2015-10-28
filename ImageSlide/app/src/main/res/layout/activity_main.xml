@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@color/backgroundMain"
-    android:id="@+id/mainLayout" >
+    android:background="@color/colorBackgroundPrimary" >
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <GridLayout
+            android:id="@+id/gridLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnCount="2"
-            android:id="@+id/gridLayout">
+            android:columnCount="2" >
 
         </GridLayout>
     </ScrollView>
 
     <ImageButton
+        android:id="@+id/menuButton"
+        android:onClick="menuButtonClick"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:onClick="menuButtonClick"
-        android:id="@+id/menuButton"
-        android:src="@drawable/menu_icon"
         android:layout_gravity="end"
+        android:src="@drawable/menu_icon"
         android:scaleType="fitCenter"
         android:background="@null" />
 
@@ -42,30 +42,30 @@
 
         <Button
             android:id="@+id/button_imageSites"
+            android:onClick="imageSitesButtonClick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Image Sites"
-            android:textColor="@color/menuText"
-            android:onClick="imageSitesButtonClick"
-            android:background="#00000000"
             android:gravity="start|center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
+            android:text="Image Sites"
+            android:textColor="@color/colorTextPrimary"
             android:textAllCaps="false"
+            android:background="#00000000"
             style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:id="@+id/button_settings"
+            android:onClick="settingsButtonClick"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textColor="@color/menuText"
-            android:onClick="settingsButtonClick"
-            android:background="#00000000"
             android:gravity="start|center_vertical"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
+            android:text="Settings"
+            android:textColor="@color/colorTextPrimary"
             android:textAllCaps="false"
+            android:background="#00000000"
             style="?android:attr/borderlessButtonStyle" />
     </LinearLayout>
 
