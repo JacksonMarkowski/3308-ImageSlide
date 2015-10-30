@@ -31,9 +31,13 @@ public class MainActivity extends AppCompatActivity {
         layout.setVisibility(View.GONE);
 
 
+        //Tests for ImagePanel
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.desert);
         ImagePanel p = new ImagePanel(this, bitmap, "Title", "http://link", "Description");
-        p.createImageView();
+        p.scaleImageView();
+        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.penguins);
+        ImagePanel p2 = new ImagePanel(this, bitmap2, "Title", "http://link", "Description");
+        p2.scaleImageView();
 
         //LoadImageFromWebOperations("Google");
     }

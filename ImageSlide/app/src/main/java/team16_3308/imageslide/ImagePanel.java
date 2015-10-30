@@ -6,7 +6,9 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -16,12 +18,13 @@ import java.net.URL;
 
 public class ImagePanel {
 
-    private ImageView display;
+    private ImageButton display;
     private Bitmap image;
     private String title;
     private String link;
     private String description;
     private AppCompatActivity activity;
+    private int activityWidth;
 
     public ImagePanel() {
 
@@ -35,31 +38,47 @@ public class ImagePanel {
         this.title = title;
         this.link = link;
         this.description = description;
+        this.activityWidth = (activity.getResources().getDisplayMetrics().widthPixels) - 40;
+        createImageButton();
+    }
+
+    public void createImageButton() {
+        display = new ImageButton(activity);
+        addClickListener();
+        display.setBackgroundColor(0);
+        display.setPadding(10,10,10,10);
+    }
+
+    //ToDo:Click listener needs to be apart of the scroll view not the image
+    public void addClickListener() {
+        display.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("1", "2");
+            }
+        });
     }
 
     //Creates the basic ImageView
-    public void createImageView() {
+    public void scaleImageView() {
         Bitmap imageScaled;
-        GridLayout gLayout = (GridLayout) activity.findViewById(R.id.gridLayout);
 
-        //ToDo: layoutWidth gets screen size
-        int layoutWidth = 1080;
+        //generates values for in order to scale the bitmap
         int originalImageWidth = image.getWidth();
         int originalImageHeight = image.getHeight();
         int newImageWidth = originalImageWidth;
         int newImageHeight = originalImageHeight;
 
-        if (originalImageWidth > (layoutWidth/2)) {
-            newImageWidth = layoutWidth/2;
+        if (originalImageWidth > (activityWidth / 2)) {
+            newImageWidth = activityWidth / 2;
             newImageHeight = (newImageWidth * originalImageHeight) / originalImageWidth;
         }
 
-        //creation of imageView
-        display = new ImageView(activity);
-        imageScaled = Bitmap.createScaledBitmap(image, newImageWidth, newImageHeight, false);
+        //ToDo: Check if image resolution needs to be adjusted
+        imageScaled = Bitmap.createScaledBitmap(image, newImageWidth, newImageHeight, false) ;
         display.setImageBitmap(imageScaled);
 
         //adds the ImageView to the grid layout
+        GridLayout gLayout = (GridLayout) activity.findViewById(R.id.gridLayout);
         gLayout.addView(display);
 
 
