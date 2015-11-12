@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONObject;
+
+
 public class imageSource extends AppCompatActivity {
 
     @Override
@@ -48,5 +51,12 @@ public class imageSource extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void test()
+    {
+
+        interpretData id = new interpretData("superbowl");
+        id.getPicURL();
     }
 }
