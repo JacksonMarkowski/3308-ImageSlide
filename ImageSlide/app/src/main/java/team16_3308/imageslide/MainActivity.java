@@ -1,5 +1,6 @@
 package team16_3308.imageslide;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -29,32 +31,24 @@ public class MainActivity extends AppCompatActivity {
         //sets the menuLayout to not being visible(menu is not open on startup)
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
-
-
-        //Tests for ImagePanel
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.desert);
-        ImagePanel p = new ImagePanel(this, bitmap, "Title", "http://link", "Description");
-        p.scaleImageView();
-        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.drawable.penguins);
-        ImagePanel p2 = new ImagePanel(this, bitmap2, "Title", "http://link", "Description");
-        p2.scaleImageView();
-
-        //LoadImageFromWebOperations("Google");
+        for (int i = 0; i < 10; i++) {
+            ImageButton imageDisplay = new ImageButton(this.getApplicationContext());
+            //imageDisplay.setBackgroundColor(0);
+            //imageDisplay.setPadding(10, 10, 10, 10);
+            GridLayout gLayout = (GridLayout) findViewById(R.id.gridLayout);
+            gLayout.addView(imageDisplay);
+            new DownloadImage(imageDisplay).execute("http://i.imgur.com/Tgs8g2o.jpg");
+        }
     }
 
-    //Handles touchEvents for the activity
-    public boolean onTouchEvent(MotionEvent e) {
-
-        Log.v("Working", "kinda");
-        return false;
-    }
+    /*public void createImageButton() {
+        display = new ImageButton(activity);
+        addClickListener();
+        display.setBackgroundColor(0);
+        display.setPadding(10, 10, 10, 10);
+    }*/
 
     public void menuButtonClick(View view) {
-        //TextView textView = new TextView(this);
-        //textView.setTextSize(40);
-        //textView.setText("Hello");
-        //RelativeLayout layout = (RelativeLayout) findViewById(R.id.menuLayout);
-        //layout.addView(textView);
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.VISIBLE);
     }
@@ -80,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static Drawable LoadImageFromWebOperations(String url)
+    /*public static Drawable LoadImageFromWebOperations(String url)
     {
         try{
             InputStream is = (InputStream) new URL("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png").getContent();
@@ -91,5 +85,5 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-    }
+    }*/
 }
