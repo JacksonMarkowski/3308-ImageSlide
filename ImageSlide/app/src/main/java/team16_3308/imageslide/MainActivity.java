@@ -1,27 +1,14 @@
 package team16_3308.imageslide;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
-
-    public final static String EXTRA_MESSAGE = "team16_3308.imageslide.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +19,38 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
 
-        GridLayout gridLayout = (GridLayout) findViewById(R.id.gridLayout);
+        RelativeLayout imagesLayout = (RelativeLayout) findViewById(R.id.imagesLayout);
         int imageDisplayWidth = (getResources().getDisplayMetrics().widthPixels - 40) / 2;
+
+        int bottomLeftId = R.id.layoutLeftStart;
+        int bottomRightId = R.id.layoutRightStart;
+
         //ToDO: Url needs to come from api/json and for each url retrieved code inside for loop needs to be executed
         String[] urls = {"http://i.imgur.com/Tgs8g2o.jpg", "http://i.imgur.com/YTCuWJ9.jpg", "http://i.imgur.com/mxdD3nu.jpg", "http://i.imgur.com/I7jd1MQ.jpg?1", "https://i.imgur.com/iDNrz0i.jpg"};
         for (int i = 0; i < 5; i++) {
             ImageButton imageDisplay = new ImageButton(this.getApplicationContext());
             imageDisplay.setBackgroundColor(0);
             imageDisplay.setPadding(10, 10, 10, 10);
+            int newId = View.generateViewId();
+            imageDisplay.setId(newId);
 
-            gridLayout.addView(imageDisplay);
+            if (i%2 == 0) {
+                RelativeLayout.LayoutParams paramsLeft = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                paramsLeft.addRule(RelativeLayout.ALIGN_PARENT_START);
+                paramsLeft.addRule(RelativeLayout.ALIGN_END, R.id.layoutCenter);
+                paramsLeft.addRule(RelativeLayout.BELOW, bottomLeftId);
+                imageDisplay.setLayoutParams(paramsLeft);
+                bottomLeftId = newId;
+            } else {
+                RelativeLayout.LayoutParams paramsRight = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                paramsRight.addRule(RelativeLayout.ALIGN_PARENT_END);
+                paramsRight.addRule(RelativeLayout.ALIGN_START, R.id.layoutCenter);
+                paramsRight.addRule(RelativeLayout.BELOW, bottomRightId);
+                imageDisplay.setLayoutParams(paramsRight);
+                bottomRightId = newId;
+            }
+
+            imagesLayout.addView(imageDisplay);
             new DownloadImage(imageDisplay, imageDisplayWidth).execute(urls[i]);
         }
     }
@@ -77,18 +86,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,SettingsActivity.class);
         startActivity(intent);
     }
-
-
-    /*public static Drawable LoadImageFromWebOperations(String url)
-    {
-        try{
-            InputStream is = (InputStream) new URL("https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png").getContent();
-            Drawable d = Drawable.createFromStream(is, "Google");
-            return d;}
-        catch(Exception e)
-        {
-            return null;
-        }
-
-    }*/
 }

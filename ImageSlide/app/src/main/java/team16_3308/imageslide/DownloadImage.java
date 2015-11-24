@@ -22,23 +22,18 @@ public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
         Bitmap image = null;
         try {
             InputStream input = new java.net.URL(url).openStream();
-            //image = BitmapFactory.decodeStream(input);
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(input, null, options);
 
-            final int height = options.outHeight;
             final int width = options.outWidth;
             int inSampleSize = 1;
 
             if (width > displayWidth) {
 
-                //final int halfHeight = height / 2;
                 final int halfWidth = width / 2;
 
-                // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-                // height and width larger than the requested height and width.
                 while ((halfWidth / inSampleSize) > displayWidth) {
                     inSampleSize *= 2;
                 }
