@@ -31,13 +31,18 @@ public class MainActivity extends AppCompatActivity {
         //sets the menuLayout to not being visible(menu is not open on startup)
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
-        for (int i = 0; i < 10; i++) {
+
+        GridLayout gridLayout = (GridLayout) findViewById(R.id.gridLayout);
+        int imageDisplayWidth = (getResources().getDisplayMetrics().widthPixels - 40) / 2;
+        //ToDO: Url needs to come from api/json and for each url retrieved code inside for loop needs to be executed
+        String[] urls = {"http://i.imgur.com/Tgs8g2o.jpg", "http://i.imgur.com/YTCuWJ9.jpg", "http://i.imgur.com/mxdD3nu.jpg", "http://i.imgur.com/I7jd1MQ.jpg?1", "https://i.imgur.com/iDNrz0i.jpg"};
+        for (int i = 0; i < 5; i++) {
             ImageButton imageDisplay = new ImageButton(this.getApplicationContext());
-            //imageDisplay.setBackgroundColor(0);
-            //imageDisplay.setPadding(10, 10, 10, 10);
-            GridLayout gLayout = (GridLayout) findViewById(R.id.gridLayout);
-            gLayout.addView(imageDisplay);
-            new DownloadImage(imageDisplay).execute("http://i.imgur.com/Tgs8g2o.jpg");
+            imageDisplay.setBackgroundColor(0);
+            imageDisplay.setPadding(10, 10, 10, 10);
+
+            gridLayout.addView(imageDisplay);
+            new DownloadImage(imageDisplay, imageDisplayWidth).execute(urls[i]);
         }
     }
 

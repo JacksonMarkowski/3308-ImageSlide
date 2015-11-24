@@ -10,9 +10,11 @@ import java.io.InputStream;
 
 public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
     ImageButton panel;
+    int displayWidth;
 
-    public DownloadImage(ImageButton panel) {
+    public DownloadImage(ImageButton panel, int displayWidth) {
         this.panel = panel;
+        this.displayWidth = displayWidth;
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -30,15 +32,14 @@ public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
             final int width = options.outWidth;
             int inSampleSize = 1;
 
-            if (height > 500 || width > 500) {
+            if (width > displayWidth) {
 
-                final int halfHeight = height / 2;
+                //final int halfHeight = height / 2;
                 final int halfWidth = width / 2;
 
                 // Calculate the largest inSampleSize value that is a power of 2 and keeps both
                 // height and width larger than the requested height and width.
-                while ((halfHeight / inSampleSize) > 500
-                        && (halfWidth / inSampleSize) > 500) {
+                while ((halfWidth / inSampleSize) > displayWidth) {
                     inSampleSize *= 2;
                 }
             }
@@ -54,7 +55,20 @@ public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
         return image;
     }
 
+    //ToDO: Add colspan for imageButton params inorder to fix gaps between images in columns
     protected void onPostExecute(Bitmap image) {
-        panel.setImageBitmap(image);
+        int originalImageWidth = image.getWidth();
+        int originalImageHeight = image.getHeight();
+        int newImageWidth = originalImageWidth;
+        int newImageHeight = originalImageHeight;
+
+        if (originalImageWidth > displayWidth) {
+            newImageWidth = displayWidth;
+            newImageHeight = (newImageWidth * originalImageHeight) / originalImageWidth;
+        }
+
+        Bitmap scaledImage = Bitmap.createScaledBitmap(image, newImageWidth, newImageHeight, true);
+
+        panel.setImageBitmap(scaledImage);
     }
 }
