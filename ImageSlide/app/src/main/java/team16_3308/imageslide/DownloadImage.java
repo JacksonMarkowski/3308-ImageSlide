@@ -50,14 +50,13 @@ public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
         return image;
     }
 
-    //ToDO: Add colspan for imageButton params inorder to fix gaps between images in columns
     protected void onPostExecute(Bitmap image) {
         int originalImageWidth = image.getWidth();
         int originalImageHeight = image.getHeight();
         int newImageWidth = originalImageWidth;
         int newImageHeight = originalImageHeight;
 
-        if (originalImageWidth > displayWidth) {
+        if (originalImageWidth != displayWidth) {
             newImageWidth = displayWidth;
             newImageHeight = (newImageWidth * originalImageHeight) / originalImageWidth;
         }
