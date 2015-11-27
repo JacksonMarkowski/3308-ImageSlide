@@ -53,4 +53,8 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(refresh);
     }
 
+    public void backButtonClick(View view) {
+        finish();
+    }
+
 }
