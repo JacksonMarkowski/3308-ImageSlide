@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class IndividualImage extends AppCompatActivity {
+public class SingleImageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
