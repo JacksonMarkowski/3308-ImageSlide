@@ -55,6 +55,14 @@ public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap image) {
+        if (style == 1 || style == 3) {
+            scaleImageOriginalRatio(image);
+        } else if (style == 2) {
+            scaleImageSquare(image);
+        }
+    }
+
+    private void scaleImageOriginalRatio(Bitmap image) {
         int originalImageWidth = image.getWidth();
         int originalImageHeight = image.getHeight();
         int newImageWidth = originalImageWidth;
@@ -68,5 +76,28 @@ public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
         Bitmap scaledImage = Bitmap.createScaledBitmap(image, newImageWidth, newImageHeight, true);
 
         panel.setImageBitmap(scaledImage);
+    }
+
+    private void scaleImageSquare(Bitmap image) {
+        int originalImageWidth = image.getWidth();
+        int originalImageHeight = image.getHeight();
+        int newImageWidth;
+        int newImageHeight;
+        Bitmap square;
+
+        if (originalImageWidth > originalImageHeight) {
+            newImageHeight = displayWidth;
+            newImageWidth = (newImageHeight * originalImageWidth) / originalImageHeight;
+            Bitmap scaledImage = Bitmap.createScaledBitmap(image, newImageWidth, newImageHeight, true);
+
+            square = Bitmap.createBitmap(scaledImage, scaledImage.getWidth()/2 - scaledImage.getHeight()/ 2, 0, scaledImage.getHeight(), scaledImage.getHeight());
+        } else {
+            newImageWidth = displayWidth;
+            newImageHeight = (newImageWidth * originalImageHeight) / originalImageWidth;
+            Bitmap scaledImage = Bitmap.createScaledBitmap(image, newImageWidth, newImageHeight, true);
+            square = Bitmap.createBitmap(scaledImage, 0, scaledImage.getHeight()/2 - scaledImage.getWidth()/2, scaledImage.getWidth(), scaledImage.getWidth());
+        }
+
+        panel.setImageBitmap(square);
     }
 }

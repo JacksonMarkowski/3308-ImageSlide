@@ -70,7 +70,7 @@ public class ImagesScrollView extends ScrollView {
         }
 
         imagesLayout.addView(imageDisplay);
-        new DownloadImage(imageDisplay, imageDisplayWidth, imageDisplayWidth, 1).execute(url);
+        new DownloadImage(imageDisplay, imageDisplayWidth, imageDisplayWidth, 2).execute(url);
         imageCount++;
     }
 }
