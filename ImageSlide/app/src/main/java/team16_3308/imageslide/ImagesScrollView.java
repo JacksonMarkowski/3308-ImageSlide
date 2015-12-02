@@ -21,7 +21,6 @@ public class ImagesScrollView extends ScrollView {
         super(context,attributeSet);
     }
 
-    @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         View view = (View)getChildAt(getChildCount()-1);
         int d = view.getBottom();
@@ -35,9 +34,6 @@ public class ImagesScrollView extends ScrollView {
     }
 
     protected void loadInitialImages() {
-        RelativeLayout imagesLayout = (RelativeLayout) findViewById(R.id.imagesLayout);
-        int imageDisplayWidth = (getResources().getDisplayMetrics().widthPixels - 40) / 2;
-
         int bottomLeftId = R.id.layoutLeftStart;
         int bottomRightId = R.id.layoutRightStart;
 
@@ -53,6 +49,7 @@ public class ImagesScrollView extends ScrollView {
         int imageDisplayWidth = (getResources().getDisplayMetrics().widthPixels - 40) / 2;
 
         SingleImageButton imageDisplay = new SingleImageButton(getContext().getApplicationContext());
+        imageDisplay.url = url;
         int newId = View.generateViewId();
         imageDisplay.setId(newId);
 
@@ -73,7 +70,7 @@ public class ImagesScrollView extends ScrollView {
         }
 
         imagesLayout.addView(imageDisplay);
-        new DownloadImage(imageDisplay, imageDisplayWidth).execute(url);
+        new DownloadImage(imageDisplay, imageDisplayWidth, imageDisplayWidth, 1).execute(url);
         imageCount++;
     }
 }

@@ -10,11 +10,15 @@ import java.io.InputStream;
 
 public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
     ImageButton panel;
+    int displayWidthSample;
     int displayWidth;
+    int style;
 
-    public DownloadImage(ImageButton panel, int displayWidth) {
+    public DownloadImage(ImageButton panel, int displayWidthSample, int displayWidth, int style) {
         this.panel = panel;
+        this.displayWidthSample = displayWidthSample;
         this.displayWidth = displayWidth;
+        this.style = style;
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -30,11 +34,11 @@ public class DownloadImage extends AsyncTask <String, Void, Bitmap> {
             final int width = options.outWidth;
             int inSampleSize = 1;
 
-            if (width > displayWidth) {
+            if (width > displayWidthSample) {
 
                 final int halfWidth = width / 2;
 
-                while ((halfWidth / inSampleSize) > displayWidth) {
+                while ((halfWidth / inSampleSize) > displayWidthSample) {
                     inSampleSize *= 2;
                 }
             }
