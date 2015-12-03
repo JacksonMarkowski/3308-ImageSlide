@@ -40,15 +40,13 @@ public class ImagesScrollView extends ScrollView {
      * @param oldY oldY
      */
     protected void onScrollChanged(int x, int y, int oldX, int oldY) {
-        View view = (View)getChildAt(getChildCount()-1);
-        int d = view.getBottom();
-        d -= (getHeight()+getScrollY());
-        if(d==0)
-        {
+        View view = getChildAt(getChildCount() - 1);
+        int diff = view.getBottom() - (getHeight() + getScrollY());
+        if(diff == 0) {
             Log.v("5", "5");
+        } else {
+            super.onScrollChanged(x, y, oldX, oldY);
         }
-        else
-            super.onScrollChanged(x,y,oldX,oldY);
     }
 
     /** Loads the first set of images into the ScrollView. */
