@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
+import java.util.ArrayList;
+
 /** ScrollView that will contain multiple images for the main layout. */
 public class ImagesScrollView extends ScrollView {
 
@@ -50,15 +52,15 @@ public class ImagesScrollView extends ScrollView {
     }
 
     /** Loads the first set of images into the ScrollView. */
-    protected void loadInitialImages() {
+    protected void loadInitialImages(ArrayList<String> urls) {
         style = 1;
         bottomLeftId = R.id.layoutLeftStart;
         bottomRightId = R.id.layoutRightStart;
 
         //ToDO: Url needs to come from api/json and for each url retrieved code inside second for loop needs to be executed
-        String[] urls = {"http://i.imgur.com/Tgs8g2o.jpg", "http://i.imgur.com/YTCuWJ9.jpg", "http://i.imgur.com/mxdD3nu.jpg", "http://i.imgur.com/I7jd1MQ.jpg?1", "https://i.imgur.com/iDNrz0i.jpg", "http://i.imgur.com/AhMrLqN.jpg", "http://i.imgur.com/z5fvyIe.jpg", "http://i.imgur.com/pRdipvw.jpg"};
-        for (int i = 0; i < urls.length; i++) {
-            loadImage(urls[i]);
+        //String[] urls = {"http://i.imgur.com/Tgs8g2o.jpg", "http://i.imgur.com/YTCuWJ9.jpg", "http://i.imgur.com/mxdD3nu.jpg", "http://i.imgur.com/I7jd1MQ.jpg?1", "https://i.imgur.com/iDNrz0i.jpg", "http://i.imgur.com/AhMrLqN.jpg", "http://i.imgur.com/z5fvyIe.jpg", "http://i.imgur.com/pRdipvw.jpg"};
+        for (int i = 0; i < urls.size(); i++) {
+            loadImage(urls.get(i));
         }
     }
 

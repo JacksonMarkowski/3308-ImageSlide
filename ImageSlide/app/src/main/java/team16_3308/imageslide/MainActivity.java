@@ -3,6 +3,7 @@ package team16_3308.imageslide;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -18,15 +19,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //sets the menuLayout to not being visible(menu is not open on startup)
         LinearLayout layout = (LinearLayout) findViewById(R.id.menuLayout);
         layout.setVisibility(View.GONE);
         View outsideMenu = findViewById(R.id.outsideMenu);
         outsideMenu.setVisibility(View.GONE);
 
+        RetrieveUrls r = new RetrieveUrls(this);
+
         ImagesScrollView scrollView = (ImagesScrollView) findViewById(R.id.scrollView);
-        scrollView.loadInitialImages();
+        scrollView.loadInitialImages(r.getFinalUrls());
     }
 
     /** Displays the side menu on the screen.
@@ -60,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void settingsButtonClick(View view) {
         closeMenu(view);
-        InterpretData test = new InterpretData();
-        test.returnPicURLS();
 
         //Opens the settingsActivity
         Intent intent = new Intent(this,SettingsActivity.class);
