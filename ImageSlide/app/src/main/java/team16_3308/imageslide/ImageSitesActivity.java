@@ -20,7 +20,8 @@ public class ImageSitesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_sites); DBHandler db = new DBHandler(this);
+        setContentView(R.layout.activity_image_sites);
+        DBHandler db = new DBHandler(this);
 
         db.open();
         try{

@@ -22,6 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+
     }
 
     /** Finishes/closes the settings activity and returns to the previous activity.
