@@ -7,6 +7,14 @@
     android:background="@color/colorBackgroundPrimary" >
 
     <ImageButton
+        android:id="@+id/singleImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:padding="10dp"/>
+
+    <ImageButton
         android:id="@+id/backButton"
         android:onClick="backButtonClick"
         android:layout_width="52dp"
@@ -15,13 +23,5 @@
         android:src="@drawable/back_icon"
         android:scaleType="fitCenter"
         android:background="@null" />
-
-    <ImageButton
-        android:id="@+id/singleImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:padding="10dp"/>
 
 </FrameLayout>
