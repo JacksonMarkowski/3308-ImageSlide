@@ -10,15 +10,25 @@ import java.net.URL;
 import java.net.MalformedURLException;
 import android.util.Log;
 
+/** Downloads the json from a reddit.com/r/. */
 public class DownloadSubreddit extends AsyncTask<String, Void, String> {
 
     String url2;
     String rawData = "2";
 
+    /** Constructor for DownloadSubreddit
+     *
+     * @param url Url that the subreddit will be appended to.
+     */
     public DownloadSubreddit(String url) {
         this.url2 = url;
     }
 
+    /** Background process of AsyncTask used for retrieving the json.
+     *
+     * @param subreddits Subreddit name that the json will be pulled from.
+     * @return String of json retrieved from the subreddit page.
+     */
     protected String doInBackground(String... subreddits) {
         String subreddit = subreddits[0];
 
@@ -41,10 +51,11 @@ public class DownloadSubreddit extends AsyncTask<String, Void, String> {
         }
     }
 
-    protected String returnData() {
-        return rawData;
-    }
-
+    /** Opens a connection with a url
+     *
+     * @param url Url that the connection will be made to.
+     * @return HTTPURLConnection that was made from the url or null if the connection failed.
+     */
     public static HttpURLConnection getConnection(String url)
     {
         //String url = "http://www.reddit.com/r/" + subreddit + ".json";
