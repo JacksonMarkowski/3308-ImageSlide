@@ -5,6 +5,7 @@ Multiple Site Image Gallery
 The files are done through Android studio, and so compiling is best done through Android Studio. Download Android Studio and the necessary drivers needed for your computer to run it. There are two ways to do this:
 ## Through Emulator
 **The emulator through Android Studio only functions with Intel Processors. AMD processors will have to use an external phone to run app.**
+
 1. Download the default packages checked in the SDK Standalone Manager.
 2. Create a Virtual Device to run the app in.
 3. Run the Program
