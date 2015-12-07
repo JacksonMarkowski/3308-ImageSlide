@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -47,15 +48,22 @@ public class ImageSitesActivity extends AppCompatActivity {
      * @param view Reference to the backButton
      */
     public void sendSub(View view){
-        Intent intent = new Intent(this, DBHandler.class);
         EditText editText = (EditText) findViewById(R.id.subreddit);
         String message = editText.getText().toString();
+        editText.setText("", TextView.BufferType.EDITABLE);
         DBHandler db = new DBHandler(this);
         db.open();
         db.insertSub(message);
 
-        finish();
-        startActivity(getIntent());
+        ArrayList<String> subList = new ArrayList<String>();
+        subList = db.readAll();
+        ListView lv = (ListView) findViewById(R.id.subredditList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                subList
+        );
+        lv.setAdapter(arrayAdapter);
     }
 
     /** Finishes/closes the image sites activity and returns to the previous activity.
