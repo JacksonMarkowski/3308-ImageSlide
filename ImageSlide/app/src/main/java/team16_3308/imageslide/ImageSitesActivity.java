@@ -43,14 +43,21 @@ public class ImageSitesActivity extends AppCompatActivity {
     }
 
     public void sendSub(View view){
-        Intent intent = new Intent(this, DBHandler.class);
         EditText editText = (EditText) findViewById(R.id.subreddit);
         String message = editText.getText().toString();
         DBHandler db = new DBHandler(this);
         db.open();
         db.insertSub(message);
-        Intent refresh = new Intent(this, ImageSitesActivity.class);
-        startActivity(refresh);
+
+        ArrayList<String> subList = new ArrayList<String>();
+        subList = db.readAll();
+        ListView lv = (ListView) findViewById(R.id.subredditList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                subList
+        );
+        lv.setAdapter(arrayAdapter);
     }
 
     /** Finishes/closes the image sites activity and returns to the previous activity.
