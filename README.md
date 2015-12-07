@@ -1,14 +1,15 @@
 # ImageSlide
-Multiple Site Image Gallery
+ImageSlide is an app for Android which can be used in order to view images from different sites. 
 
 # Setup
 The files are done through Android studio, and so compiling is best done through Android Studio. Download Android Studio and the necessary drivers needed for your computer to run it. There are two ways to do this:
+
 ## Through Emulator
 **The emulator through Android Studio only functions with Intel Processors. AMD processors will have to use an external phone to run app.**
-
 1. Download the default packages checked in the SDK Standalone Manager.
 2. Create a Virtual Device to run the app in.
 3. Run the Program
+
 ## Using an Android Phone
 1. Enable Developer Mode and USB Debugging in Android phone. http://developer.android.com/tools/device.html
 2. Download and install driver for your phone.
