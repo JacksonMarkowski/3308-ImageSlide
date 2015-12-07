@@ -42,6 +42,10 @@ public class ImageSitesActivity extends AppCompatActivity {
 
     }
 
+    /** On button hit, sub is saved into database and activity is refreshed
+     *
+     * @param view Reference to the backButton
+     */
     public void sendSub(View view){
         Intent intent = new Intent(this, DBHandler.class);
         EditText editText = (EditText) findViewById(R.id.subreddit);
@@ -49,8 +53,9 @@ public class ImageSitesActivity extends AppCompatActivity {
         DBHandler db = new DBHandler(this);
         db.open();
         db.insertSub(message);
-        Intent refresh = new Intent(this, ImageSitesActivity.class);
-        startActivity(refresh);
+
+        finish();
+        startActivity(getIntent());
     }
 
     /** Finishes/closes the image sites activity and returns to the previous activity.

@@ -13,7 +13,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-
+/** Creates functions to manage database */
 public class DBHandler{
     //Parts taken from http://stackoverflow.com/questions/18160712/using-sqlite-database-for-the-very-first-time-in-android-how
     public static final String DATABASE_NAME = "sites";
@@ -33,24 +33,44 @@ public class DBHandler{
     private DBHelper helper;
     private SQLiteDatabase db;
 
+    /** DBHandler constructor
+     *
+     * @param ctx Context where the database is coming from
+     */
     public DBHandler(Context ctx)
     {
         this.context = ctx;
         helper = new DBHelper(context);
     }
 
-
+    /** Uses SQLiteOpenHelper to create database
+     *
+     */
     private static class DBHelper extends SQLiteOpenHelper{
+        /**Creates Database
+         *
+         * @param context Context to figure out if database is needed
+         */
         DBHelper(Context context){
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
+        /** sql command to create Database
+         *
+         * @param db Created in class to manage this class
+         */
         @Override
         public void onCreate(SQLiteDatabase db)
         {
             db.execSQL(DATABASE_CREATE);
         }
 
+        /** Checks for newer version of SQLite Database
+         *
+         * @param db Manages database
+         * @param oldVersion Checks current version of database
+         * @param newVersion Upgrades to new version
+         */
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ". which will destroy all old data");
@@ -60,15 +80,28 @@ public class DBHandler{
 
     }
 
+    /** Used for activities to open database to be used
+     *
+     * @return Returns database
+     * @throws SQLException If there is an error will throw SQL exception
+     */
     public DBHandler open() throws SQLException{
         db = helper.getWritableDatabase();
         return this;
     }
 
+    /** Used for activity to close database
+     *
+     */
     public void close(){
         helper.close();
     }
 
+    /** Places a subreddit name into the database
+     *
+     * @param subname The name of the subreddit
+     * @return Inserts string into database
+     */
     public long insertSub(String subname){
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_SUBNAME, subname);
@@ -76,6 +109,10 @@ public class DBHandler{
 
     }
 
+    /** Takes all rows in database and places them into an ArrayList to return
+     *
+     * @return Returns ArrayList of database subreddit names
+     */
     public ArrayList<String> readAll(){
         ArrayList<String> list = new ArrayList<String>();
         try {
@@ -98,4 +135,8 @@ public class DBHandler{
         return list;
     }
 
+    public boolean deleteSub(String subname){
+        return db.delete(DATABASE_TABLE, KEY_SUBNAME + "=" + subname, null) > 0;
+
+    }
 }
