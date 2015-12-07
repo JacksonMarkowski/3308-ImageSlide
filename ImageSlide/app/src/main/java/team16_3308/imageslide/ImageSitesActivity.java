@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,7 @@ public class ImageSitesActivity extends AppCompatActivity {
     public void sendSub(View view){
         EditText editText = (EditText) findViewById(R.id.subreddit);
         String message = editText.getText().toString();
+        editText.setText("", TextView.BufferType.EDITABLE);
         DBHandler db = new DBHandler(this);
         db.open();
         db.insertSub(message);
