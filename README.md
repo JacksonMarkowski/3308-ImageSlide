@@ -18,3 +18,7 @@ The files are done through Android studio, and so compiling is best done through
 
 # Navigating App
 The App has the main gallery, which shows all the images, and two settings on the top-right. In Image Sites you can change the different Reddit subreddits which you want to grab your images from.
+
+# Running tests
+Automated tests are run through Espresso, download and install required sdk packages for Espresso/android testing.  If using Android Studio, right click on the test called EspressoTest inside the androidTest directory and select run.
+https://google.github.io/android-testing-support-library/docs/espresso/setup/
